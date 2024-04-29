@@ -7,16 +7,16 @@ import posiciones.*
 program juego {
 	// CONFIG
 	game.title("Space Invaders")
-	game.height(15)
-	game.width(15)
+	game.height(12)
+	game.width(16)
 	game.boardGround("fondo.jpg")
 	
 	game.addVisual(nave)
 	game.addVisual(alien)
 	
 	// comportamieno de Nave
-	keyboard.down().onPressDo({ nave.mover(abajo) })
-	keyboard.up().onPressDo({ nave.mover(arriba) })
+//	keyboard.down().onPressDo({ nave.mover(abajo) })
+//	keyboard.up().onPressDo({ nave.mover(arriba) })
 	keyboard.left().onPressDo({ nave.mover(izquierda) })
 	keyboard.right().onPressDo({ nave.mover(derecha) })
 	game.start()
