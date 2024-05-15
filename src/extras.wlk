@@ -5,6 +5,6 @@ object alien {
 	var property position = game.at(7,7)
 	
 	method image() {
-		return "alien1.png"
+		return "alien.png"
 	}
 }
