@@ -5,18 +5,16 @@ import posiciones.*
 import nivel.*
 import inicio.*
 
-object juego{
-	
-	method empezar(){
-		game.clear
-		game.addVisual(nave)
+object juego {
+
+	method empezar() {
+		game.clear()
+		game.addVisualCharacter(nave)
 		game.addVisual(alien)
-		
-// comportamieno de Nave
-//	keyboard.down().onPressDo({ nave.mover(abajo) })
-//	keyboard.up().onPressDo({ nave.mover(arriba) })
-	keyboard.left().onPressDo({ nave.mover(izquierda) })
-	keyboard.right().onPressDo({ nave.mover(derecha) })
+			// comportamieno de Nave
+		keyboard.up().onPressDo({nave.bloquear()})
+		keyboard.space().onPressDo({nave.disparar(new Bala)})
 	}
-	
+
 }
+
