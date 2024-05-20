@@ -85,6 +85,7 @@ class Bala {
 	method validarBala(){
 		if (self.fueraDelTablero() and game.hasVisual(self)){
 			game.removeVisual(self)
+			game.removeTickEvent("DESAPARECER")
 		}
 	}
 	

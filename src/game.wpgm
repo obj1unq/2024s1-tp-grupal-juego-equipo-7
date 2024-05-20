@@ -22,6 +22,9 @@ program juego {
 	keyboard.up().onPressDo({nave.bloquear()})
 	keyboard.space().onPressDo({nave.disparar(new Bala())})
 	
+	
+	
+	
 //	pantallaInicio.cargar()
 	game.start()
 }
