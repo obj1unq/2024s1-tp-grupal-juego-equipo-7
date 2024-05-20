@@ -10,7 +10,8 @@ object juego {
 	method empezar() {
 		game.clear()
 		game.addVisualCharacter(nave)
-		game.addVisual(alien)
+		flota.spawn()
+		
 			// comportamieno de Nave
 		keyboard.up().onPressDo({nave.bloquear()})
 		keyboard.space().onPressDo({nave.disparar(new Bala())})
