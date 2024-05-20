@@ -13,7 +13,7 @@ object juego {
 		game.addVisual(alien)
 			// comportamieno de Nave
 		keyboard.up().onPressDo({nave.bloquear()})
-		keyboard.space().onPressDo({nave.disparar(new Bala)})
+		keyboard.space().onPressDo({nave.disparar(new Bala())})
 	}
 
 }
