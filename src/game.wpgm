@@ -14,7 +14,6 @@ program juego {
 	game.width(24)
 	game.boardGround("fondo.jpg")
 	
-//	game.clear()
 	game.addVisualCharacter(nave)
 	flota.spawn()
 		
@@ -22,6 +21,6 @@ program juego {
 	keyboard.up().onPressDo({nave.bloquear()})
 	keyboard.space().onPressDo({nave.disparar(new Bala())})
 	
-//	pantallaInicio.cargar()
+	pantallaInicio.cargar()
 	game.start()
 }
