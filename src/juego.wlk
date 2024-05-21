@@ -4,6 +4,7 @@ import extras.*
 import posiciones.*
 import nivel.*
 import inicio.*
+import balas.*
 
 object juego {
 
@@ -12,10 +13,8 @@ object juego {
 		game.addVisualCharacter(nave)
 		flota.spawn()
 		
-			// comportamieno de Nave
+		// comportamieno de Nave
 		keyboard.up().onPressDo({nave.bloquear()})
-		keyboard.space().onPressDo({nave.disparar(new Bala())})
+		keyboard.space().onPressDo({nave.disparar()})
 	}
-
 }
-
