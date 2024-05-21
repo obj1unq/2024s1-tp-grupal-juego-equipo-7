@@ -24,7 +24,7 @@ object flota {
 					]
 					
 	method spawn() {
-		aliens.forEach({alien => game.addVisual(alien)})
+		aliens.forEach({alien => alien.nacer()})
 	}
 }
 
@@ -35,7 +35,13 @@ class Alien {
 	
 	method puntos()
 	
-	method morir() {
+	method nacer() {
+		game.addVisual(self)
+		game.onCollideDo(self, {algo => self.reaccionColision(algo)})
+	}
+	
+	method reaccionColision(algo) {
+		algo.collide(self)
 		game.removeVisual(self)
 	}
 	
@@ -72,32 +78,5 @@ class AlienAmarillo inherits Alien {
 	override method puntos() {
 		return 10
 	}
-}
-
-class Bala {
-
-	var property position = null
-
-	method image() {
-		return "bala.png"
-	}
-	
-	method validarBala(){
-		if (self.fueraDelTablero() and game.hasVisual(self)){
-			game.removeVisual(self)
-			game.removeTickEvent("DESAPARECER")
-		}
-	}
-	
-	method fueraDelTablero(){
-		return position.y() >= game.height()  
-	}
-
-	method disparar(){
-		if(game.hasVisual(self)){
-			game.onTick(50, "disparo", {position = position.up(1)})
-		}
-	}
-	
 }
 

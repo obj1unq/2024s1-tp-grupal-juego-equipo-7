@@ -7,20 +7,14 @@ import inicio.*
 import juego.*
 
 
-program juego {
+program game {
 	// CONFIG
 	game.title("Space Invaders")
-	game.height(14)
+	game.height(16)
 	game.width(24)
 	game.boardGround("fondo.jpg")
 	
-	game.addVisualCharacter(nave)
-	flota.spawn()
-		
-	// comportamieno de Nave
-	keyboard.up().onPressDo({nave.bloquear()})
-	keyboard.space().onPressDo({nave.disparar(new Bala())})
-	
+	juego.empezar()
 	pantallaInicio.cargar()
 	game.start()
 }
