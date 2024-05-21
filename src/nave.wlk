@@ -18,7 +18,7 @@ object nave {
 	
 	method validarDisparo(bala){
 		game.onTick(0, "DESAPARECER", {bala.validarBala()})
-		
+		game.removeTickEvent("DESAPARECER")
 	}
 	
 	method bloquear(){

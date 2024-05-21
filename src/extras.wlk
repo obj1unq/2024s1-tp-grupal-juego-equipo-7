@@ -28,6 +28,17 @@ object flota {
 	}
 }
 
+object flotaDeBarreras{
+	const barreras = [new BarreraMarron(position = game.at(9,5)), new BarreraGris(position = game.at(10,5)),
+					new BarreraGris(position = game.at(11,5)), new BarreraMarron(position = game.at(12,5)),
+					 new BarreraGris(position = game.at(13,5)), new BarreraMarron(position = game.at(14,5))
+					]
+					
+	method spawnDeBarreras(){
+		barreras.forEach({barrera => game.addVisual(barrera)}) 
+	}
+}
+
 class Alien {
 	var property position
 	
@@ -98,7 +109,27 @@ class Bala {
 			game.onTick(100, "disparo", {position = position.up(1)})
 		}
 	}
+}
+
+class Barrera {
+	var property position = null 
 	
+	method image()
+	method desaparecer() {
+		game.removeVisual(self)
+	}
 	
 }
 
+class BarreraGris inherits Barrera{
+	
+	override method image(){
+		return "barrera_gris.png"
+	}
+}
+class BarreraMarron inherits Barrera{
+	
+	override method image(){
+		return "barrera_marron.png"
+	}
+}

@@ -11,10 +11,12 @@ object juego {
 		game.clear()
 		game.addVisualCharacter(nave)
 		flota.spawn()
+		flotaDeBarreras.spawnDeBarreras()
 		
 			// comportamieno de Nave
 		keyboard.up().onPressDo({nave.bloquear()})
 		keyboard.space().onPressDo({nave.disparar(new Bala())})
+		
 	}
 
 }
