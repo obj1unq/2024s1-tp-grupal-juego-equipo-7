@@ -1,6 +1,6 @@
 import wollok.game.*
 import nave.*
-import extras.*
+import aliens.*
 import posiciones.*
 import nivel.*
 import inicio.*
@@ -10,8 +10,8 @@ object juego {
 
 	method empezar() {
 		game.clear()
-		game.addVisualCharacter(nave)
-		flota.spawn()
+//		game.addVisualCharacter(nave)
+//		flota.spawn()
 		
 		// comportamieno de Nave
 		keyboard.up().onPressDo({nave.bloquear()})
