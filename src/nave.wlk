@@ -1,12 +1,12 @@
 import wollok.game.*
 import posiciones.*
 import nivel.*
-import extras.*
+import aliens.*
 import balas.*
 
 object nave {
 
-	var property position = game.at(0, 0)
+	var property position = null   //game.at(0, 0)
 	const arma = balasManager
 
 	method image() = "nave.png"
