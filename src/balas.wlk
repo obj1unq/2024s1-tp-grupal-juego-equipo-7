@@ -2,7 +2,7 @@ import wollok.game.*
 import nave.* 
 import posiciones.*
 import aliens.*
-
+ 
 class Bala {
 
 	var property position = null

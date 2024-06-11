@@ -19,3 +19,4 @@ object juego {
 		game.onCollideDo(nave, {bala => nave.reaccionColision(bala)})
 	}
 }
+ 

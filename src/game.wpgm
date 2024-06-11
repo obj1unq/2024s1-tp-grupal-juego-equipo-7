@@ -19,3 +19,4 @@ program game {
 	pantallaInicio.cargar()
 	game.start()
 }
+ 

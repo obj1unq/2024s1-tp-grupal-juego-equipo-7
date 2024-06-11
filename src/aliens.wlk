@@ -92,4 +92,4 @@ class AlienAmarillo inherits Alien {
 	override method puntos() {
 		return 10
 	}
-}
+} 
