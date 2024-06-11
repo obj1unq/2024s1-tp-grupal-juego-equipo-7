@@ -1,7 +1,7 @@
 import wollok.game.*
 import nave.*
 import nivel.*
-
+import aliens.*
 import juego.*
 
 object pantallaInicio{

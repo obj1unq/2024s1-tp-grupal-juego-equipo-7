@@ -1,7 +1,7 @@
 import wollok.game.*
 import posiciones.*
 import nivel.*
-
+import aliens.*
 import balas.*
 
 object nave {
