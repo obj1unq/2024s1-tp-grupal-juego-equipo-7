@@ -1,7 +1,7 @@
 import wollok.game.*
 import nave.* 
 import posiciones.*
-import extras.*
+import aliens.*
 
 class Bala {
 
