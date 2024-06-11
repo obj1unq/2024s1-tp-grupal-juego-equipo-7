@@ -1,6 +1,6 @@
 import wollok.game.*
 import nave.*
-import extras.*
+
 import posiciones.*
 import inicio.*
 import juego.*
