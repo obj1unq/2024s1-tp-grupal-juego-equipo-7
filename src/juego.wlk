@@ -19,3 +19,4 @@ object juego {
 		keyboard.space().onPressDo({nave.disparar()})
 	}
 }
+       

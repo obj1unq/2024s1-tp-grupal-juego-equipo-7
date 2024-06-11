@@ -17,4 +17,4 @@ object pantallaInicio{
 			game.onTick(600, "INCIO",{juego.empezar()})			
 		}
 	}
-}
+} 

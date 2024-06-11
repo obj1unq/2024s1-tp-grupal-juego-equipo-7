@@ -11,4 +11,4 @@ class Nivel {
 	var property image 
 	
 	
-} 
+}  
