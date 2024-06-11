@@ -1,13 +1,14 @@
 import wollok.game.*
 import posiciones.*
 import nivel.*
-import extras.*
+import aliens.*
 import balas.*
 
 object nave {
 
 	var property position = game.at(0, 0)
-	const arma = balasManager
+	const arma = balasManagerNave
+	var salud = 3
 
 	method image() = "nave.png"
 
@@ -23,6 +24,13 @@ object nave {
 		position = game.at(self.position().x(), 0)
 	}
 	
-	
+	method reaccionColision(bala){
+		if(salud == 1){
+			game.stop()
+		}
+		else{		
+		salud -= 1
+		}
+	}
 }
 

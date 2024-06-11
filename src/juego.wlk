@@ -1,6 +1,6 @@
 import wollok.game.*
 import nave.*
-import extras.*
+import aliens.*
 import posiciones.*
 import nivel.*
 import inicio.*
@@ -16,5 +16,6 @@ object juego {
 		// comportamieno de Nave
 		keyboard.up().onPressDo({nave.bloquear()})
 		keyboard.space().onPressDo({nave.disparar()})
+		game.onCollideDo(nave, {bala => nave.reaccionColision(bala)})
 	}
 }

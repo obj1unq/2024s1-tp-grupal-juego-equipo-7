@@ -1,9 +1,10 @@
 import wollok.game.*
 import nave.*
-import extras.*
+import aliens.*
 import posiciones.*
 import nivel.*
 import inicio.*
+import balas.*
 import juego.*
 
 
@@ -14,7 +15,7 @@ program game {
 	game.width(24)
 	game.boardGround("fondo.jpg")
 	
-	juego.empezar()
+	
 	pantallaInicio.cargar()
 	game.start()
 }

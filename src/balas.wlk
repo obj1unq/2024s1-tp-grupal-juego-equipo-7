@@ -1,12 +1,12 @@
 import wollok.game.*
 import nave.* 
 import posiciones.*
-import extras.*
+import aliens.*
 
 class Bala {
 
 	var property position = null
-	const master = balasManager
+	const master = self.master()
 //	const enemigo = flota
 	
 
@@ -20,9 +20,6 @@ class Bala {
 		}
 	}
 	
-	method fueraDelTablero(){
-		return position.y() >= game.height()  
-	}
 
 	method disparar(){
 		if(game.hasVisual(self)){
@@ -31,9 +28,12 @@ class Bala {
 	}
 	
 	method collide(algo) {
-		master.quitar(self)
-		
-		
+		if(self.puedoMatarlo(algo)){
+			master.quitar(self)
+		}
+		else{
+			
+		}
 	}
 	
 	method nombreTickDisparar() {
@@ -44,26 +44,63 @@ class Bala {
 		game.removeTickEvent(self.nombreTickDisparar())
 	}
 	
-	method mover() {
+	method puedoMatarlo(algo)
+	
+	method fueraDelTablero()
+	
+	method master()
+	
+	method mover()
+}
+
+class BalaAlien inherits Bala {
+	
+	override method puedoMatarlo(algo){
+		return algo == nave 
+	}
+	
+	override method fueraDelTablero(){
+		return position.y() < 0
+	}
+	
+	override method master(){
+		return balasManagerAlien
+	}
+	
+	override method mover(){
+		position = position.down(1)
+		self.validarBala()
+	}
+	
+}
+
+class BalaNave inherits Bala {
+	
+	override method puedoMatarlo(algo){
+		return flota.aliens().contains(algo)
+	}
+	
+	override method fueraDelTablero(){
+		return position.y() >= game.height()  
+	}
+	
+	override method master(){
+		return balasManagerNave
+	}
+	
+	override method mover() {
 		position = position.up(1)
 		self.validarBala()
 	}
+	
 }
 
-object balasManager {
-	//balas
-	const bala1 = new Bala()
-	const bala2 = new Bala()
-	const bala3 = new Bala()
-	const bala4 = new Bala()
-	const bala5 = new Bala()
+class BalasManager {
 	
-	const property generadas = []
-	const property noGeneradas = [bala1, bala2, bala3, bala4, bala5]
-//	const carry = nave
-
+    const property generadas = []
+	const property noGeneradas = self.municion()
 	
-	method generar() {
+		method generar() {
 		if (noGeneradas.isEmpty()) {
 		//	game.say(carry, "recargando")
 		}
@@ -72,13 +109,13 @@ object balasManager {
 			generadas.add(noGeneradas.first())
 			
 //			carry.validarDisparo(noGeneradas.first())
-			noGeneradas.first().position(nave.position())
+			noGeneradas.first().position(self.carry().position())
 			noGeneradas.first().disparar()
 			noGeneradas.remove(noGeneradas.first())
 			}
 		}
-	
-	method quitar(bala) {
+		
+		method quitar(bala) {
 		game.removeVisual(bala)
 		generadas.remove(bala)
 		noGeneradas.add(bala)
@@ -86,4 +123,42 @@ object balasManager {
 		
 	}
 	
+	method municion()
+	
+	method carry()
+}
+
+object balasManagerNave inherits BalasManager {
+	
+   //balas
+   
+   const bala1 = new BalaNave()
+   const bala2 = new BalaNave()
+   const bala3 = new BalaNave()
+   const bala4 = new BalaNave()
+   const bala5 = new BalaNave()
+   
+   override method municion(){
+   	  return [bala1, bala2, bala3, bala4, bala5]
+   }
+	
+   override method carry(){
+   	   return nave
+   }
+
+	
+}
+
+object balasManagerAlien inherits BalasManager {
+	
+	const bala = new BalaAlien()
+	
+	override method municion(){
+   	  return [bala]
+   }
+   
+   override method carry(){
+   	   return flota.aliens().anyOne()
+   }   
+      
 }

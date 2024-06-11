@@ -1,9 +1,10 @@
 import wollok.game.*
+import balas.*
 import nave.*
 
 object flota {
 	
-	const aliens = [ //aliens rojos
+	const property aliens = [ //aliens rojos
 					new AlienRojo(position = game.at(8,14)), new AlienRojo(position = game.at(9,14)), new AlienRojo(position = game.at(10,14)),
 					new AlienRojo(position = game.at(11,14)), new AlienRojo(position = game.at(12,14)), new AlienRojo(position = game.at(13,14)),
 					new AlienRojo(position = game.at(14,14)), new AlienRojo(position = game.at(15,14)),
@@ -22,6 +23,7 @@ object flota {
 					new AlienAmarillo(position = game.at(11,10)), new AlienAmarillo(position = game.at(12,10)), new AlienAmarillo(position = game.at(13,10)),
 					new AlienAmarillo(position = game.at(14,10)), new AlienAmarillo(position = game.at(15,10))
 					]
+	
 					
 	method spawn() {
 		aliens.forEach({alien => alien.nacer()})
@@ -29,6 +31,9 @@ object flota {
 }
 
 class Alien {
+	
+	const arma = balasManagerAlien
+	
 	var property position
 	
 	method image()
@@ -37,14 +42,23 @@ class Alien {
 	
 	method nacer() {
 		game.addVisual(self)
-		game.onCollideDo(self, {algo => self.reaccionColision(algo)})
+		game.onTick(600, "AlienDisparo", {self.disparar()})
+		game.onCollideDo(self, {bala => self.reaccionColision(bala)})
 	}
 	
-	method reaccionColision(algo) {
-		algo.collide(self)
+	method disparar(){
+		arma.generar()
+	}
+	
+	method reaccionColision(bala) {
+		if (not bala.puedoMatarlo(self)){
+			
+		}
+		else{
+		bala.collide(self)
 		game.removeVisual(self)
+		}
 	}
-	
 }
 
 class AlienRojo inherits Alien {
@@ -79,4 +93,3 @@ class AlienAmarillo inherits Alien {
 		return 10
 	}
 }
-
