@@ -1,10 +1,11 @@
 import wollok.game.*
 import nave.*
 import posiciones.*
+import ComportamientoMovimientos.*
 
 object flota {
 
-	
+	var property estadoMovimiento = estadoADerecha
 	const aliens = []
 
 	method agregarAlien(alien) {
@@ -14,8 +15,37 @@ object flota {
 	method eliminarAlien(alien) {
 		aliens.remove(alien)
 	}
+	
+
+	method spawn() {
+		game.onTick(400, "moverAlien", { self.moverAliens()})
+	}
+
+	method moverAliens() {
+		estadoMovimiento.actualizar(self)
+		self.moverA(estadoMovimiento.direccion())
+	}
+
+	method moverA(direccion) {
+		aliens.forEach({ alien => alien.mover(direccion)})
+	}
+
+	method xs() {
+		return aliens.map({ alien => alien.position().x() })
+	}
+
+	method maxX() {
+		return self.xs().max()
+	}
 
 	
+
+	method minX() {
+		return self.xs().min()
+	}
+
+	
+
 }
 
 class Alien {
