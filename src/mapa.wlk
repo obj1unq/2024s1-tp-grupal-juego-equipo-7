@@ -74,6 +74,7 @@ object mapa {
 
 	method generar() {
 		(0 .. game.width() - 1).forEach({ x => (0 .. game.height() - 1).forEach({ y => self.generarCelda(x, y)})})
+	flota.spawn()
 	}
 
 	method generarCelda(x, y) {
