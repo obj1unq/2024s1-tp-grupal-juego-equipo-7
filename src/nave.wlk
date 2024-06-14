@@ -6,7 +6,7 @@ import balas.*
 
 object nave {
 
-	var property position = game.at(0, 0)
+	var property position = null
 	const arma = balasManager
 
 	method image() = "nave.png"

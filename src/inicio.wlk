@@ -4,6 +4,7 @@ import nivel.*
 import aliens.*
 import juego.*
 
+
 object pantallaInicio{
 	
 	var property position = game.at(-1, 1)
