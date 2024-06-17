@@ -6,7 +6,7 @@ import nivel.*
 import inicio.*
 import juego.*
 import mapa.*
-
+import barrera.*
 
 
 program game {
