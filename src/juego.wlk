@@ -6,6 +6,7 @@ import nivel.*
 import inicio.*
 import balas.*
 import mapa.*
+import barrera.*
 
 object juego {
 

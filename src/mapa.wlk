@@ -1,7 +1,7 @@
 import aliens.*
 import nave.*
 import wollok.game.*
-
+import barrera.*
 object _ {
 
 	method generar(posicion) {
@@ -50,7 +50,29 @@ object n {
 	}
 
 }
+//////////////////////////////////////////////////////////////////////////////////////
+class GeneradorBarrera {
 
+	method generar(posicion) {
+		const barrera = self.barreraNueva(posicion)
+		barrera.nacer()
+	}
+	
+	method barreraNueva(posicion)
+
+}
+object g inherits GeneradorBarrera {
+
+	override method barreraNueva(posicion){
+		return new BarreraGris(position = posicion)
+	}
+}
+object m inherits GeneradorBarrera {
+
+	override method barreraNueva(posicion){
+		return new BarreraMarron(position = posicion)
+	}
+}
 object mapa {
 
 	const celdas = [
@@ -64,7 +86,7 @@ object mapa {
 		[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 8
 		[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 7
 		[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 6
-		[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 5
+		[_,_,_,g,g,m,g,m,m,_,m,_,m,m,m,g,g,m,g,g,g,_,_,_], // 5
 		[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 4
 		[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 3
 		[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 2
