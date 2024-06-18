@@ -5,15 +5,16 @@ import posiciones.*
 import nivel.*
 import inicio.*
 import balas.*
+import mapa.*
+import barrera.*
 
 object juego {
 
 	method empezar() {
 		game.clear()
-		game.addVisualCharacter(nave)
-		flota.spawn()
 		
 		// comportamieno de Nave
+		mapa.generar()
 		keyboard.up().onPressDo({nave.bloquear()})
 		keyboard.space().onPressDo({nave.disparar()})
 		game.onCollideDo(nave, {bala => nave.reaccionColision(bala)})

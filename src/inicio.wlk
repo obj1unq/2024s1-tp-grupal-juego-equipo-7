@@ -6,9 +6,8 @@ import juego.*
 
 object pantallaInicio{
 	
-	var property position = game.at(-1, 1)
-	var property image = "pantallaInicio.jpg"
-	
+	var property position = game.at(3, 5)
+	var property image = "pantallaInicio.png"
 	method cargar(){
 		game.addVisual(self)
 		keyboard.enter().onPressDo {
