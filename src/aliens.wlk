@@ -52,7 +52,9 @@ class Alien {
 
 	var property position
 	const equipo = flota
-
+	
+	const property sonidoMuerteAlien = "muerte_alien.mp3"
+	
 	method image()
 
 	method puntos()
@@ -64,9 +66,11 @@ class Alien {
 	}
 
 	method reaccionColision(algo) {
+		const sonido =game.sound(self.sonidoMuerteAlien())
 		algo.collide(self)
 		game.removeVisual(self)
 		equipo.eliminarAlien(self)
+		sonido.play()
 	}
 
 	method mover(direccion) {
