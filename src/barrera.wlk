@@ -1,28 +1,37 @@
 import wollok.game.*
 object flotaDeBarreras{
-	const barreras = [new BarreraMarron(position = game.at(5,5)), new BarreraGris(position = game.at(7,5)),
-					new BarreraGris(position = game.at(12,5)), new BarreraMarron(position = game.at(14,5)),
-					 new BarreraGris(position = game.at(16,5)), new BarreraMarron(position = game.at(19,5))
-					]
+	const property barreras = []
 
 	method spawn() {
 		barreras.forEach({barrera => barrera.nacer()})
+	}
+	
+	method agregarBarrera(barrera){
+		barreras.add(barrera)
+	}
+	
+	method eliminarBarrera(barrera){
+		barreras.remove(barrera)
 	}
 }
 class Barrera {
 	var property position = null 
 	var property salud = 3
+	const flota = flotaDeBarreras
+	
 	method image()
 /////////////////////////////////////////////////
 
 	method nacer() {
 		game.addVisual(self)
 		game.onCollideDo(self, {algo => self.reaccionColision(algo)})
+		flota.agregarBarrera(self)
 	}
 
 	method reaccionColision(algo) {
 		if(salud == 1){
 			algo.collide(self)
+			flota.eliminarBarrera(self)
 			game.removeVisual(self)
 		}else{
 			algo.collide(self)

@@ -1,7 +1,9 @@
 import wollok.game.*
 import nave.* 
 import posiciones.*
+import barrera.*
 import aliens.*
+import mapa.*
 
 class Bala {
 
@@ -44,7 +46,9 @@ class Bala {
 		game.removeTickEvent(self.nombreTickDisparar())
 	}
 	
-	method puedoMatarlo(algo)
+	method puedoMatarlo(algo){
+		return flotaDeBarreras.barreras().contains(algo)
+	}
 	
 	method fueraDelTablero()
 	
@@ -56,7 +60,7 @@ class Bala {
 class BalaAlien inherits Bala {
 	
 	override method puedoMatarlo(algo){
-		return algo == nave 
+		return super(algo) or algo == nave 
 	}
 	
 	override method fueraDelTablero(){
@@ -77,7 +81,7 @@ class BalaAlien inherits Bala {
 class BalaNave inherits Bala {
 	
 	override method puedoMatarlo(algo){
-		return flota.aliens().contains(algo)
+		return super(algo) or flota.aliens().contains(algo)
 	}
 	
 	override method fueraDelTablero(){

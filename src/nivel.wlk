@@ -6,9 +6,9 @@ import inicio.*
 import juego.*
 
 class Nivel {
+
 	
-	var property position = game.at(5,4)
+	var property position = game.at(3,0)
 	var property image 
-	
-	
+
 } 

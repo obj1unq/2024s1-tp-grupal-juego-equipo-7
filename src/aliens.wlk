@@ -1,7 +1,9 @@
 import wollok.game.*
 import balas.*
 import nave.*
+import nivel.*
 import posiciones.*
+import juego.*
 import ComportamientoMovimientos.*
 
 object flota {
@@ -16,7 +18,6 @@ object flota {
 	method eliminarAlien(alien) {
 		aliens.remove(alien)
 	}
-	
 
 	method spawn() {
 		game.onTick(400, "moverAlien", { self.moverAliens()})
@@ -54,7 +55,6 @@ class Alien {
 	const arma = balasManagerAlien
 	var property position
 	const equipo = flota
-	
 	const property sonidoMuerteAlien = "muerte_alien.mp3"
 	
 	method image()
@@ -74,7 +74,7 @@ class Alien {
 	
 	method reaccionColision(bala) {
 		const sonido = game.sound(self.sonidoMuerteAlien())
-		if (not bala.puedoMatarlo(self)){
+	    if (not bala.puedoMatarlo(self)){
 			
 		}
 		else{

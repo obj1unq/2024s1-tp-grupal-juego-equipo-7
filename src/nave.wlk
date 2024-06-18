@@ -11,8 +11,7 @@ object nave {
 	const arma = balasManagerNave
 	var salud = 3
 	const property sonidoDisparo = "disparo_nave.mp3"
-
-	method image() = "nave.png"
+	var property image = "nave.png"
 
 	method disparar(){
 		const sonido = game.sound(self.sonidoDisparo())
@@ -35,8 +34,14 @@ object nave {
 		else if(salud == 1){
 			game.stop()
 		}
-		else{		
+		else{
+		self.danio()	
 		salud -= 1
 		}
+	}
+	
+	method danio(){
+		image = "naveDanio.png"	
+		game.schedule(300, {image = "nave.png"})	
 	}
 }

@@ -19,5 +19,6 @@ object juego {
 		keyboard.space().onPressDo({nave.disparar()})
 		game.onCollideDo(nave, {bala => nave.reaccionColision(bala)})
 	}
+	
 }
  
