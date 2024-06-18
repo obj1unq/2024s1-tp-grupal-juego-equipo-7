@@ -3,11 +3,13 @@ import posiciones.*
 import nivel.*
 import aliens.*
 import balas.*
-
+ 
 object nave {
 
+
 	var property position = null
-	const arma = balasManager
+	const arma = balasManagerNave
+	var salud = 3
 	const property sonidoDisparo = "disparo_nave.mp3"
 
 	method image() = "nave.png"
@@ -26,6 +28,15 @@ object nave {
 		position = game.at(self.position().x(), 0)
 	}
 	
-	
+	method reaccionColision(bala){
+		if (not bala.puedoMatarlo(self)){
+			
+		}
+		else if(salud == 1){
+			game.stop()
+		}
+		else{		
+		salud -= 1
+		}
+	}
 }
-

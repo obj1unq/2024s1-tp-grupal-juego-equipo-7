@@ -1,4 +1,5 @@
 import wollok.game.*
+import balas.*
 import nave.*
 import posiciones.*
 import ComportamientoMovimientos.*
@@ -6,7 +7,7 @@ import ComportamientoMovimientos.*
 object flota {
 
 	var property estadoMovimiento = estadoADerecha
-	const aliens = []
+	const property aliens = []
 
 	method agregarAlien(alien) {
 		aliens.add(alien)
@@ -49,7 +50,8 @@ object flota {
 }
 
 class Alien {
-
+	
+	const arma = balasManagerAlien
 	var property position
 	const equipo = flota
 	
@@ -61,17 +63,27 @@ class Alien {
 
 	method nacer() {
 		game.addVisual(self)
-		game.onCollideDo(self, { algo => self.reaccionColision(algo)})
+		game.onTick(600, "AlienDisparo", {self.disparar()})
+		game.onCollideDo(self, {bala => self.reaccionColision(bala)})
 		equipo.agregarAlien(self)
 	}
-
-	method reaccionColision(algo) {
-		const sonido =game.sound(self.sonidoMuerteAlien())
-		algo.collide(self)
+	
+	method disparar(){
+		arma.generar()
+	}
+	
+	method reaccionColision(bala) {
+		const sonido = game.sound(self.sonidoMuerteAlien())
+		if (not bala.puedoMatarlo(self)){
+			
+		}
+		else{
+		bala.collide(self)
 		game.removeVisual(self)
 		equipo.eliminarAlien(self)
 		sonido.play()
-	}
+		}
+}
 
 	method mover(direccion) {
 		const proxima = direccion.siguiente(self.position())
@@ -114,5 +126,6 @@ class AlienAmarillo inherits Alien {
 		return 10
 	}
 
-}
+} 
+
 

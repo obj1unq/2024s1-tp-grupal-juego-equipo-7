@@ -4,6 +4,7 @@ import aliens.*
 import posiciones.*
 import nivel.*
 import inicio.*
+import balas.*
 import juego.*
 import mapa.*
 import barrera.*
@@ -19,3 +20,4 @@ program game {
 //	mapa.generar()
 	game.start()
 }
+ 
