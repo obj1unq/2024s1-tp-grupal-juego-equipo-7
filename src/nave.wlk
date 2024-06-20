@@ -34,6 +34,7 @@ object nave {
 			
 		}
 		else if(salud == 1){
+			self.danio()
 			gameOver.perder()
 		}
 		else{

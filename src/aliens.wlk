@@ -47,6 +47,11 @@ object flota {
 	method vaciarFlota(){
 		aliens.clear()
 	}
+	
+	method congelarFlota(){
+		game.removeTickEvent("moverAlien")
+		aliens.forEach({alien => game.removeTickEvent("AlienDisparo")})	
+	}
 
 }
 

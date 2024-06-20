@@ -9,7 +9,6 @@ import mapa.*
 import barrera.*
 
 object juego {
-
 	method empezar() {
 		game.clear()
 		self.restart()
@@ -20,8 +19,7 @@ object juego {
 		keyboard.up().onPressDo({nave.bloquear()})
 		keyboard.space().onPressDo({nave.disparar()})
 		game.onCollideDo(nave, {bala => nave.reaccionColision(bala)})
-		
-		
+			
 	}
 	
 	method restart(){
@@ -29,4 +27,5 @@ object juego {
 		balasManagerNave.recargar()
 		flota.vaciarFlota()
 	}
+	
 }
