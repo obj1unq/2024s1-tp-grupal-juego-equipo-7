@@ -19,5 +19,6 @@ program game {
 	pantallaInicio.cargar()
 //	mapa.generar()
 	game.start()
+    
 }
  
