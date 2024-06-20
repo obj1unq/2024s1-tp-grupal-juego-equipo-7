@@ -4,6 +4,7 @@ import nave.*
 import nivel.*
 import posiciones.*
 import juego.*
+import barrera.*
 import ComportamientoMovimientos.*
 
 object flota {
@@ -40,21 +41,26 @@ object flota {
 		return self.xs().max()
 	}
 
-	
-
 	method minX() {
 		return self.xs().min()
 	}
 
+	method vaciarFlota(){
+		aliens.clear()
+	}
 	
+	method congelarFlota(){
+		game.removeTickEvent("moverAlien")
+		aliens.forEach({alien => game.removeTickEvent("AlienDisparo")})	
+	}
 
 }
 
 class Alien {
 	
-	const arma = balasManagerAlien
 	var property position
 	const equipo = flota
+	const arma = balasManagerAlien
 	const property sonidoMuerteAlien = "muerte_alien.mp3"
 	
 	method image()
@@ -63,22 +69,18 @@ class Alien {
 
 	method nacer() {
 		game.addVisual(self)
-		game.onTick(600, "AlienDisparo", {self.disparar()})
-		game.onCollideDo(self, {bala => self.reaccionColision(bala)})
+		game.onTick(600, "AlienDisparo", {arma.generar()})
+		game.onCollideDo(self, {algo => self.reaccionColision(algo)})
 		equipo.agregarAlien(self)
 	}
 	
-	method disparar(){
-		arma.generar()
-	}
-	
-	method reaccionColision(bala) {
+	method reaccionColision(algo) {
 		const sonido = game.sound(self.sonidoMuerteAlien())
-	    if (not bala.puedoMatarlo(self)){
+	    if (not algo.puedoMatarlo(self) or self.puedoMatarlo(algo)){
 			
 		}
 		else{
-		bala.collide(self)
+		algo.collide(self)
 		game.removeVisual(self)
 		equipo.eliminarAlien(self)
 		sonido.play()
@@ -88,6 +90,10 @@ class Alien {
 	method mover(direccion) {
 		const proxima = direccion.siguiente(self.position())
 		self.position(proxima)
+	}
+	
+	method puedoMatarlo(algo){
+		return true
 	}
 
 }

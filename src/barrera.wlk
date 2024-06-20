@@ -1,4 +1,6 @@
 import wollok.game.*
+import aliens.*
+
 object flotaDeBarreras{
 	const property barreras = []
 
@@ -17,7 +19,7 @@ object flotaDeBarreras{
 class Barrera {
 	var property position = null 
 	var property salud = 3
-	const flota = flotaDeBarreras
+	const muro = flotaDeBarreras
 	
 	method image()
 /////////////////////////////////////////////////
@@ -25,18 +27,26 @@ class Barrera {
 	method nacer() {
 		game.addVisual(self)
 		game.onCollideDo(self, {algo => self.reaccionColision(algo)})
-		flota.agregarBarrera(self)
+		muro.agregarBarrera(self)
 	}
 
 	method reaccionColision(algo) {
-		if(salud == 1){
+		if(flota.aliens().contains(algo)){
+			game.removeVisual(self)
+			muro.eliminarBarrera(self)
+		}
+		else if(salud == 1){
 			algo.collide(self)
-			flota.eliminarBarrera(self)
+			muro.eliminarBarrera(self)
 			game.removeVisual(self)
 		}else{
 			algo.collide(self)
-		salud -= 1
+		    salud -= 1
 		}
+	}
+	
+	method puedoMatarlo(algo){
+		return false
 	}
 
 }
