@@ -3,13 +3,15 @@ import posiciones.*
 import nivel.*
 import aliens.*
 import balas.*
+import gameOver.*
  
 object nave {
 
 
 	var property position = null
-	const arma = balasManagerNave
-	var salud = 3
+	const property arma = balasManagerNave
+	var property salud 
+	const vida = []
 	const property sonidoDisparo = "disparo_nave.mp3"
 	var property image = "nave.png"
 
@@ -32,7 +34,7 @@ object nave {
 			
 		}
 		else if(salud == 1){
-			game.stop()
+			gameOver.perder()
 		}
 		else{
 		self.danio()	
@@ -42,6 +44,35 @@ object nave {
 	
 	method danio(){
 		image = "naveDanio.png"	
-		game.schedule(300, {image = "nave.png"})	
+		game.schedule(300, {image = "nave.png"})
+		vida.last().morir()	
+	}
+	
+	method addCorazon(corazon){
+		vida.add(corazon)
+	}
+	
+	method quitarCorazon(corazon){
+		vida.remove(corazon)
+	}
+}
+
+class Corazon{
+	
+	var property position = null
+    var estado = 1
+    
+    method nacer(){
+    	game.addVisual(self)
+    	nave.addCorazon(self)
+    }
+    
+    method image(){
+		return "corazon" + estado + ".png"
+	}
+	
+	method morir(){
+		nave.quitarCorazon(self)
+		estado = 2
 	}
 }

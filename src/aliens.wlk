@@ -40,21 +40,21 @@ object flota {
 		return self.xs().max()
 	}
 
-	
-
 	method minX() {
 		return self.xs().min()
 	}
 
-	
+	method vaciarFlota(){
+		aliens.clear()
+	}
 
 }
 
 class Alien {
 	
-	const arma = balasManagerAlien
 	var property position
 	const equipo = flota
+	const arma = balasManagerAlien
 	const property sonidoMuerteAlien = "muerte_alien.mp3"
 	
 	method image()
@@ -63,13 +63,9 @@ class Alien {
 
 	method nacer() {
 		game.addVisual(self)
-		game.onTick(600, "AlienDisparo", {self.disparar()})
+		game.onTick(600, "AlienDisparo", {arma.generar()})
 		game.onCollideDo(self, {bala => self.reaccionColision(bala)})
 		equipo.agregarAlien(self)
-	}
-	
-	method disparar(){
-		arma.generar()
 	}
 	
 	method reaccionColision(bala) {
