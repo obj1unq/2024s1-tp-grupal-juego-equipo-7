@@ -12,9 +12,7 @@ class Bala {
 //	const enemigo = flota
 	
 
-	method image() {
-		return "bala.png"
-	}
+	method image()
 	
 	method validarBala(){
 		if (self.fueraDelTablero() and game.hasVisual(self)){
@@ -59,6 +57,10 @@ class Bala {
 
 class BalaAlien inherits Bala {
 	
+	override method image(){
+		return "balaAlien.png"
+	}
+	
 	override method puedoMatarlo(algo){
 		return super(algo) or algo == nave 
 	}
@@ -79,6 +81,10 @@ class BalaAlien inherits Bala {
 }
 
 class BalaNave inherits Bala {
+	
+	override method image(){
+		return "bala.png"
+	}
 	
 	override method puedoMatarlo(algo){
 		return super(algo) or flota.aliens().contains(algo)

@@ -29,8 +29,8 @@ object nave {
 		position = game.at(self.position().x(), 0)
 	}
 	
-	method reaccionColision(bala){
-		if (not bala.puedoMatarlo(self)){
+	method reaccionColision(algo){
+		if (not algo.puedoMatarlo(self)){
 			
 		}
 		else if(salud == 1){
@@ -55,6 +55,10 @@ object nave {
 	
 	method quitarCorazon(corazon){
 		vida.remove(corazon)
+	}
+	
+	method puedoMatarlo(algo){
+		return false
 	}
 }
 
