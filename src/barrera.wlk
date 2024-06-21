@@ -32,8 +32,7 @@ class Barrera {
 
 	method reaccionColision(algo) {
 		if(flota.aliens().contains(algo)){
-			game.removeVisual(self)
-			muro.eliminarBarrera(self)
+			
 		}
 		else if(salud == 1){
 			algo.collide(self)
@@ -46,7 +45,11 @@ class Barrera {
 	}
 	
 	method puedoMatarlo(algo){
-		return false
+		return flota.aliens().contains(algo)
+	}
+	
+	method collide(algo){
+		
 	}
 
 }

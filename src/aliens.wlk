@@ -76,7 +76,7 @@ class Alien {
 	
 	method reaccionColision(algo) {
 		const sonido = game.sound(self.sonidoMuerteAlien())
-	    if (not algo.puedoMatarlo(self) or self.puedoMatarlo(algo)){
+	    if (not algo.puedoMatarlo(self)){
 			
 		}
 		else{

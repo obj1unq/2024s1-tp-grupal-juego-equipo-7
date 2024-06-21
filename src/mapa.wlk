@@ -89,7 +89,7 @@ object m inherits GeneradorBarrera {
 	}
 }
 object mapa {
-
+ 
 	const celdas = [
 		[c,c,c,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 15
 		[_,_,_,_,_,_,_,_,r,r,r,r,r,r,r,r,_,_,_,_,_,_,_,_], // 14
@@ -108,6 +108,7 @@ object mapa {
 		[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 1
 		[_,_,_,_,_,_,_,_,_,_,_,n,_,_,_,_,_,_,_,_,_,_,_,_] // 0
 	].reverse()
+
 
 	method generar() {
 		(0 .. game.width() - 1).forEach({ x => (0 .. game.height() - 1).forEach({ y => self.generarCelda(x, y)})})
