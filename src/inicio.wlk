@@ -5,20 +5,26 @@ import aliens.*
 import juego.*
 
 object pantallaInicio{
-	const property sonidoMenu = "menu.mp3"
 	var property position = game.at(3, 5)
 	var property image = "pantallaInicio.png"
-	
-	
-	method cargar(){
+	const property sonidoMenu = "menu.mp3"
+
+	method cargar() {
 		const sonido = game.sound(self.sonidoMenu())
-		sonido.play()
 		game.addVisual(self)
-		keyboard.enter().onPressDo {
-			game.clear()
+		sonido.shouldLoop(true)
+		game.schedule(500, { sonido.play()})
+		
+		game.addVisualIn(pressStart, game.at(6,1))
+		keyboard.enter().onPressDo{ game.clear()
 			game.addVisual(new Nivel(image = "level1.png"))
-			
-			game.onTick(600, "INCIO",{juego.empezar()})			
+			sonido.stop()
+			game.onTick(600, "INCIO", { juego.empezar()})
 		}
 	}
+}
+object pressStart{
+	var property image = "pressStart.png"
+	
+	
 }
