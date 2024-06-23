@@ -9,7 +9,7 @@ object nave {
 
 	var property position = null
 	const arma = balasManagerNave
-	var salud = 3
+	var property salud = 3
 	const property sonidoDisparo = "disparo_nave.mp3"
 	var property image = "nave.png"
 
