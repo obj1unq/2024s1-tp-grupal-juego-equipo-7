@@ -11,12 +11,19 @@ import aliens.*
  	const alienVerde = new AlienVerde()
  	const alienRojo = new AlienRojo()
  	const alienAmarillo = new AlienAmarillo()
+ 	const corazon = new Corazon()
 
 	test "bala de alien colisiona contra la nave y saca salud " {
+		nave.addCorazon(corazon)
+		nave.addCorazon(corazon)
+		nave.addCorazon(corazon)
+		nave.salud(3)
+		assert.equals(3,nave.salud())
 		nave.reaccionColision(balaAlien)	
 		assert.equals(2,nave.salud())
-		nave.reaccionColision(balaAlien)	
-		assert.equals(1,nave.salud())	
+		nave.reaccionColision(balaAlien)
+		assert.equals(1,nave.salud())
+			
 	}
 	test "bala de alien puede matar a nave "{
 		assert.that(balaAlien.puedoMatarlo(nave))
