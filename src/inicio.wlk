@@ -16,7 +16,8 @@ object pantallaInicio {
 		sonido.shouldLoop(true)
 		game.schedule(500, { sonido.play()})
 		
-		keyboard.enter().onPressDo{ game.clear()
+		keyboard.enter().onPressDo {
+			game.clear()
 			game.addVisual(new Nivel(image = "level1.png"))
 			sonido.stop()
 			game.onTick(600, "INCIO", { juego.empezar()})
