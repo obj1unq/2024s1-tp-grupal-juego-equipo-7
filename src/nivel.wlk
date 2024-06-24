@@ -10,5 +10,9 @@ class Nivel {
 	
 	var property position = game.at(3,0)
 	var property image 
+	
+	
+    	
+	
 
 } 
