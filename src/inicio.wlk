@@ -3,6 +3,7 @@ import nave.*
 import nivel.*
 import aliens.*
 import juego.*
+import mock.*
 
 object pantallaInicio {
 
@@ -11,7 +12,7 @@ object pantallaInicio {
 	const property sonidoMenu = "menu.mp3"
 
 	method cargar() {
-		const sonido = game.sound(self.sonidoMenu())
+		const sonido = soundProducer.sound(sonidoMenu)
 		game.addVisual(self)
 		sonido.shouldLoop(true)
 		game.schedule(500, { sonido.play()})
