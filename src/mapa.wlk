@@ -2,6 +2,8 @@ import aliens.*
 import nave.*
 import wollok.game.*
 import barrera.*
+import balas.*
+
 object _ {
 
 	method generar(posicion) {
@@ -47,8 +49,21 @@ object n {
 	method generar(posicion) {
 		nave.position(posicion)
 		game.addVisualCharacter(nave)
-	}
+	}  
 
+}
+
+object c {
+	
+	method generar(posicion) {
+		const corazon = self.corazonNuevo(posicion)
+		corazon.nacer()
+		
+	}
+	
+	method corazonNuevo(posicion){
+		return new Corazon(position = posicion)
+	}
 }
 //////////////////////////////////////////////////////////////////////////////////////
 class GeneradorBarrera {
@@ -74,9 +89,9 @@ object m inherits GeneradorBarrera {
 	}
 }
 object mapa {
-
+ 
 	const celdas = [
-		[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 15
+		[c,c,c,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 15
 		[_,_,_,_,_,_,_,_,r,r,r,r,r,r,r,r,_,_,_,_,_,_,_,_], // 14
 		[_,_,_,_,_,_,_,_,v,v,v,v,v,v,v,v,_,_,_,_,_,_,_,_], // 13
 		[_,_,_,_,_,_,_,_,v,v,v,v,v,v,v,v,_,_,_,_,_,_,_,_], // 12
@@ -93,6 +108,7 @@ object mapa {
 		[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 1
 		[_,_,_,_,_,_,_,_,_,_,_,n,_,_,_,_,_,_,_,_,_,_,_,_] // 0
 	].reverse()
+
 
 	method generar() {
 		(0 .. game.width() - 1).forEach({ x => (0 .. game.height() - 1).forEach({ y => self.generarCelda(x, y)})})

@@ -12,9 +12,7 @@ class Bala {
 //	const enemigo = flota
 	
 
-	method image() {
-		return "bala.png"
-	}
+	method image()
 	
 	method validarBala(){
 		if (self.fueraDelTablero() and game.hasVisual(self)){
@@ -59,6 +57,10 @@ class Bala {
 
 class BalaAlien inherits Bala {
 	
+	override method image(){
+		return "balaAlien.png"
+	}
+	
 	override method puedoMatarlo(algo){
 		return super(algo) or algo == nave 
 	}
@@ -79,6 +81,10 @@ class BalaAlien inherits Bala {
 }
 
 class BalaNave inherits Bala {
+	
+	override method image(){
+		return "bala.png"
+	}
 	
 	override method puedoMatarlo(algo){
 		return super(algo) or flota.aliens().contains(algo)
@@ -102,7 +108,7 @@ class BalaNave inherits Bala {
 class BalasManager {
 	
     const property generadas = []
-	const property noGeneradas = self.municion()
+	const property noGeneradas = []
 	
 		method generar() {
 		if (noGeneradas.isEmpty()) {
@@ -127,6 +133,11 @@ class BalasManager {
 		
 	}
 	
+	method recargar(){
+		noGeneradas.clear()
+		noGeneradas.addAll(self.municion())
+	}
+	
 	method municion()
 	
 	method carry()
@@ -135,7 +146,6 @@ class BalasManager {
 object balasManagerNave inherits BalasManager {
 	
    //balas
-   
    const bala1 = new BalaNave()
    const bala2 = new BalaNave()
    const bala3 = new BalaNave()
@@ -143,7 +153,7 @@ object balasManagerNave inherits BalasManager {
    const bala5 = new BalaNave()
    
    override method municion(){
-   	  return [bala1, bala2, bala3, bala4, bala5]
+   	  return [bala1,bala2,bala3,bala4,bala5]
    }
 	
    override method carry(){
@@ -164,5 +174,7 @@ object balasManagerAlien inherits BalasManager {
    override method carry(){
    	   return flota.aliens().anyOne()
    }   
-      
+   	    
 }
+
+
