@@ -4,6 +4,7 @@ import nivel.*
 import aliens.*
 import balas.*
 import gameOver.*
+import mock.*
 
 object nave {
 
@@ -16,7 +17,8 @@ object nave {
 	const property impacto = "golpeNave.mp3"
 
 	method disparar() {
-		const sonido = game.sound(self.sonidoDisparo())
+		const sonido = soundProducer.sound(sonidoDisparo)
+		sonido.volume(0.2)
 		arma.generar()
 		sonido.play()
 	}
@@ -37,7 +39,7 @@ object nave {
 	}
 
 	method danio() {
-		const sonido = game.sound(self.impacto())
+		const sonido = soundProducer.sound(impacto)
 		image = "naveDanio.png"
 		game.schedule(300, { image = "nave.png"})
 		sonido.play()

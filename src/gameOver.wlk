@@ -3,6 +3,7 @@ import nivel.*
 import juego.*
 import nave.*
 import aliens.*
+import mock.*
 
 
 object gameOver{
@@ -13,7 +14,7 @@ object gameOver{
 	const property sonidoMuerte = "gameOver.mp3"
 	
 	method perder(){
-		const sonido = game.sound(self.sonidoMuerte())
+		const sonido = soundProducer.sound(sonidoMuerte)
 		sonido.play()
 		flota.congelarFlota()
 		game.removeVisual(nave)
@@ -22,7 +23,7 @@ object gameOver{
 	
 	method pantallaFinal(){
 		
-		const sonido = game.sound(self.sonidoMenu())
+		const sonido = soundProducer.sound(sonidoMenu)
 		game.clear()
 		game.addVisual(self)
 		sonido.shouldLoop(true) 
