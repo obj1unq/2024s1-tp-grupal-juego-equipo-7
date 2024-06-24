@@ -15,6 +15,7 @@ object gameOver{
 	
 	method perder(){
 		const sonido = soundProducer.sound(sonidoMuerte)
+		sonido.volume(0.2)
 		sonido.play()
 		flota.congelarFlota()
 		game.removeVisual(nave)
@@ -24,6 +25,7 @@ object gameOver{
 	method pantallaFinal(){
 		
 		const sonido = soundProducer.sound(sonidoMenu)
+		sonido.volume(0.2)
 		game.clear()
 		game.addVisual(self)
 		sonido.shouldLoop(true) 

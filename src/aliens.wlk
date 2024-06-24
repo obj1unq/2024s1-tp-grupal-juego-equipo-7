@@ -77,6 +77,7 @@ class Alien {
 	
 	method reaccionColision(algo) {
 		const sonido = soundProducer.sound(sonidoMuerteAlien)
+		sonido.volume(0.2)
 	    if (not algo.puedoMatarlo(self)){
 			
 		}

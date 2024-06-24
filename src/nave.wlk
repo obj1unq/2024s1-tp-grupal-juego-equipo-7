@@ -40,6 +40,7 @@ object nave {
 
 	method danio() {
 		const sonido = soundProducer.sound(impacto)
+		sonido.volume(0.2)
 		image = "naveDanio.png"
 		game.schedule(300, { image = "nave.png"})
 		sonido.play()
