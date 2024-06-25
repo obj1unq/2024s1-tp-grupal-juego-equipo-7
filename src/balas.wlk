@@ -112,7 +112,7 @@ class BalasManager {
 	const property noGeneradas = []
 	
 		method generar() {
-		if (noGeneradas.isEmpty()) {
+		if (self.noNuedoGenerar()) {
 		//	game.say(carry, "recargando")
 		}
 		else{
@@ -126,7 +126,7 @@ class BalasManager {
 			}
 		}
 		
-		method quitar(bala) {
+	method quitar(bala) {
 		game.removeVisual(bala)
 		generadas.remove(bala)
 		noGeneradas.add(bala)
@@ -142,6 +142,10 @@ class BalasManager {
 	method municion()
 	
 	method carry()
+	
+	method noNuedoGenerar(){
+		return noGeneradas.isEmpty() or not game.hasVisual(nave) or flota.aliens().isEmpty()
+	}
 }
 
 object balasManagerNave inherits BalasManager {
@@ -160,8 +164,7 @@ object balasManagerNave inherits BalasManager {
    override method carry(){
    	   return nave
    }
-
-	
+   	
 }
 
 object balasManagerAlien inherits BalasManager {
@@ -181,6 +184,7 @@ object balasManagerAlien inherits BalasManager {
 			return [bala1]
 		}
 	}
+	
 }
 
 

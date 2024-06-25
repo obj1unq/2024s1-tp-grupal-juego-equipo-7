@@ -17,9 +17,11 @@ object nave {
 
 	method disparar() {
 		const sonido = soundProducer.sound(sonidoDisparo)
+		if(game.hasVisual(self)){	
 		sonido.volume(0.2)
 		arma.generar()
 		sonido.play()
+		}
 	}
 
 	method bloquear() {
@@ -27,7 +29,8 @@ object nave {
 	}
 
 	method reaccionColision(algo) {
-		if (not algo.puedoMatarlo(self)) {
+		if (not algo.puedoMatarlo(self) or flota.aliens().isEmpty()) {
+			
 		} else if (salud == 1) {
 			self.danio()
 			gameOver.perder()

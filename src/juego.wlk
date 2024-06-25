@@ -6,6 +6,8 @@ import inicio.*
 import balas.*
 import mapa.*
 import barrera.*
+import gameOver.*
+import mock.*
 
 object juego {
 	
@@ -14,13 +16,13 @@ object juego {
 	method empezar() {
 		game.clear()
 		self.restart()
+		mapa.generar()
 		
 		// comportamieno de Nave
-		mapa.generar()
 		nave.salud(3)
 		keyboard.up().onPressDo({nave.bloquear()})
 		keyboard.space().onPressDo({nave.disparar()})
-		game.onCollideDo(nave, {bala => nave.reaccionColision(bala)})
+		game.onCollideDo(nave, {bala => nave.reaccionColision(bala)})	
 			
 	}
 	
@@ -37,12 +39,12 @@ object juego {
 	
 	method ganarSiPuedo(){
 		if(flota.aliens().isEmpty()){
-			self.empezar()
+			const sonido = soundProducer.sound("win.mp3")
+		    sonido.play()
+			flota.congelarFlota()
+			game.schedule(700, {self.empezar()})	
 			self.aumentarDificultad() 
 		}
-	}
-	
-	
-	
+	}	
 	
 }

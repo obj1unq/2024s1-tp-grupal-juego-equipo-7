@@ -22,8 +22,8 @@ object pantallaInicio {
 		keyboard.enter().onPressDo {
 			game.clear()
 			game.addVisual(presentacion)
-			sonidoFondo.reproducirSonidoMenu()
 			sonido.stop()
+			sonidoFondo.reproducirSonidoMenu()
 			game.onTick(600, "INCIO", { juego.empezar()})
 		}
 	}
@@ -50,8 +50,13 @@ object sonidoFondo{
 	
 	
 	method reproducirSonidoMenu(){
+		sonidoFondo.shouldLoop(true)
 		sonidoFondo.volume(0.2)
 		sonidoFondo.play()
+	}
+	
+	method pausar(){
+		sonidoFondo.pause()
 	}
 }
 

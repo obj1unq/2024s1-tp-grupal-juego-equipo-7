@@ -51,7 +51,6 @@ object flota {
 	
 	method congelarFlota(){
 		game.removeTickEvent("moverAlien")
-		aliens.forEach({alien => alien.congelar()})	
 	}
 
 }
@@ -61,8 +60,7 @@ class Alien {
 	var property position
 	const equipo = flota
 	const arma = balasManagerAlien
-	const property sonidoMuerteAlien = "muerte_alien.mp3"
-	
+	const property sonidoMuerteAlien = "muerte_alien.mp3"	
 	var property estadoMovimiento = s
 	
 	method image()
@@ -104,8 +102,8 @@ class Alien {
 		return true
 	}
 	
-	method congelar(){
-		game.removeTickEvent("AlienDisparo")
+	method collide(algo){
+		
 	}
 
 }

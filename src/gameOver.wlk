@@ -15,6 +15,7 @@ object gameOver{
 	
 	method perder(){
 		const sonido = soundProducer.sound(sonidoMuerte)
+		sonidoFondo.pausar()
 		sonido.volume(0.2)
 		sonido.play()
 		flota.congelarFlota()
@@ -36,6 +37,7 @@ object gameOver{
 			sonido.stop()
 			game.addVisual(presentacion)
 			juego.dificultad(1000)
+			sonidoFondo.sonidoFondo().resume()
 			game.schedule(600, {juego.empezar()})
 		}
 		
