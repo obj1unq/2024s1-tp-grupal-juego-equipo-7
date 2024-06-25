@@ -22,7 +22,7 @@ object flota {
 	}
 
 	method spawn() {
-		game.onTick(400, "moverAlien", { self.moverAliens()})
+		game.onTick(juego.dificultad(), "moverAlien", { self.moverAliens()})
 	}
 
 	method moverAliens() {
@@ -52,7 +52,7 @@ object flota {
 	
 	method congelarFlota(){
 		game.removeTickEvent("moverAlien")
-		aliens.forEach({alien => game.removeTickEvent("AlienDisparo")})	
+		aliens.forEach({alien => alien.congelar()})	
 	}
 
 }
@@ -70,7 +70,7 @@ class Alien {
 
 	method nacer() {
 		game.addVisual(self)
-		game.onTick(600, "AlienDisparo", {arma.generar()})
+		game.onTick(juego.dificultad(), "AlienDisparo", {arma.generar()})
 		game.onCollideDo(self, {algo => self.reaccionColision(algo)})
 		equipo.agregarAlien(self)
 	}
@@ -86,8 +86,10 @@ class Alien {
 		game.removeVisual(self)
 		equipo.eliminarAlien(self)
 		sonido.play()
+		juego.ganarSiPuedo()
 		}
 }
+
 
 	method mover(direccion) {
 		const proxima = direccion.siguiente(self.position())
@@ -96,6 +98,10 @@ class Alien {
 	
 	method puedoMatarlo(algo){
 		return true
+	}
+	
+	method congelar(){
+		game.removeTickEvent("AlienDisparo")
 	}
 
 }

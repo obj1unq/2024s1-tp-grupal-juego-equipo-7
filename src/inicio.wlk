@@ -18,24 +18,34 @@ object pantallaInicio {
 		game.addVisual(self)
 		sonido.shouldLoop(true)
 		game.schedule(500, { sonido.play()})
-//		keyboard.up().onPressDo({sonido.volume(1)})
-//		keyboard.down().onPressDo({sonido.volume(0.2)})
-//		keyboard.m().onPressDo({sonido.volume(0)}) 
 		game.addVisualIn(pressStart, game.at(6,1))
-		keyboard.enter().onPressDo{ game.clear()
-			game.addVisual(new Nivel(image = "level1.png"))
+		
+		keyboard.enter().onPressDo {
+			game.clear()
+			game.addVisual(presentacion)
 			sonidoFondo.reproducirSonidoMenu()
 			sonido.stop()
 			game.onTick(600, "INCIO", { juego.empezar()})
 		}
 	}
 
+}
+
+object presentacion {
+	
+	const property position = game.at(0,0)
+	const property image = "presentacion.png"
+	
 	
 }
+
+
 object pressStart{
 	var property image = "pressStart.png"
 	
 }
+
+
 object sonidoFondo{
 	const property sonidoFondo = soundProducer.sound("sonido_fondo.mp3")
 	
@@ -45,4 +55,5 @@ object sonidoFondo{
 		sonidoFondo.play()
 	}
 }
+
 

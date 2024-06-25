@@ -4,6 +4,7 @@ import posiciones.*
 import barrera.*
 import aliens.*
 import mapa.*
+import juego.*
 
 class Bala {
 
@@ -165,16 +166,21 @@ object balasManagerNave inherits BalasManager {
 
 object balasManagerAlien inherits BalasManager {
 	
-	const bala = new BalaAlien()
+   const bala1 = new BalaAlien()
+   const bala2 = new BalaAlien()
 	
-	override method municion(){
-   	  return [bala]
-   }
-   
    override method carry(){
    	   return flota.aliens().anyOne()
    }   
-   	    
+   
+   override method municion(){
+		if (juego.dificultad() <= 500){
+			return [bala1, bala2]
+		}
+		else{
+			return [bala1]
+		}
+	}
 }
 
 
