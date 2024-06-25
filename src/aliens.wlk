@@ -1,7 +1,6 @@
 import wollok.game.*
 import balas.*
 import nave.*
-import nivel.*
 import posiciones.*
 import juego.*
 import barrera.*

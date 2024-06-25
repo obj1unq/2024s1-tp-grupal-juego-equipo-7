@@ -2,7 +2,6 @@ import wollok.game.*
 import nave.*
 import aliens.*
 import posiciones.*
-import nivel.*
 import inicio.*
 import balas.*
 import mapa.*
