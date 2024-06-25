@@ -83,7 +83,11 @@ class Alien {
 		else{
 		algo.collide(self)
 		game.removeVisual(self)
+		
 		equipo.eliminarAlien(self)
+		
+		//ARREGLAR
+		muerte.agregarVisual(position)
 		sonido.play()
 		juego.ganarSiPuedo()
 		}
@@ -154,4 +158,13 @@ object s {
 	method siguiente() {
 		return p
 	}
+}
+object muerte{
+	var property image = "explosion.png"
+	
+	  method agregarVisual(position) {
+   		game.addVisualIn(self,position)
+       	game.schedule(100, {game.removeVisual(self)})	
+      
+    }
 }
