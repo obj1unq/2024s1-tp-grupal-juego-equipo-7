@@ -63,6 +63,8 @@ class Alien {
 	const arma = balasManagerAlien
 	const property sonidoMuerteAlien = "muerte_alien.mp3"
 	
+	var property estadoMovimiento = s
+	
 	method image()
 
 	method puntos()
@@ -93,6 +95,9 @@ class Alien {
 	method mover(direccion) {
 		const proxima = direccion.siguiente(self.position())
 		self.position(proxima)
+		
+		estadoMovimiento = estadoMovimiento.siguiente()
+		
 	}
 	
 	method puedoMatarlo(algo){
@@ -108,7 +113,7 @@ class Alien {
 class AlienRojo inherits Alien {
 
 	override method image() {
-		return "alien_rojo.png"
+		return "alien_rojo_" + estadoMovimiento + ".png"
 	}
 
 	override method puntos() {
@@ -120,7 +125,7 @@ class AlienRojo inherits Alien {
 class AlienVerde inherits Alien {
 
 	override method image() {
-		return "alien_verde.png"
+		return "alien_verde_" + estadoMovimiento + ".png"
 	}
 
 	override method puntos() {
@@ -132,7 +137,7 @@ class AlienVerde inherits Alien {
 class AlienAmarillo inherits Alien {
 
 	override method image() {
-		return "alien_amarillo.png"
+		return "alien_amarillo_" + estadoMovimiento + ".png"
 	}
 
 	override method puntos() {
@@ -141,4 +146,14 @@ class AlienAmarillo inherits Alien {
 
 } 
 
+object p {
+	method siguiente() {
+		return s
+	}	
+}
 
+object s {
+	method siguiente() {
+		return p
+	}
+}
