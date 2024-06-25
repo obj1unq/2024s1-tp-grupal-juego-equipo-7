@@ -6,6 +6,7 @@ import posiciones.*
 import juego.*
 import barrera.*
 import ComportamientoMovimientos.*
+import mock.*
 
 object flota {
 
@@ -75,7 +76,8 @@ class Alien {
 	}
 	
 	method reaccionColision(algo) {
-		const sonido = game.sound(self.sonidoMuerteAlien())
+		const sonido = soundProducer.sound(sonidoMuerteAlien)
+		sonido.volume(0.2)
 	    if (not algo.puedoMatarlo(self)){
 			
 		}

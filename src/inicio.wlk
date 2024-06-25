@@ -3,6 +3,8 @@ import nave.*
 import nivel.*
 import aliens.*
 import juego.*
+import mock.*
+
 
 object pantallaInicio {
 
@@ -11,14 +13,17 @@ object pantallaInicio {
 	const property sonidoMenu = "menu.mp3"
 
 	method cargar() {
-		const sonido = game.sound(self.sonidoMenu())
+		const sonido = soundProducer.sound(sonidoMenu)
+		sonido.volume(0.2)
 		game.addVisual(self)
 		sonido.shouldLoop(true)
 		game.schedule(500, { sonido.play()})
+		game.addVisualIn(pressStart, game.at(6,1))
 		
 		keyboard.enter().onPressDo {
 			game.clear()
 			game.addVisual(presentacion)
+			sonidoFondo.reproducirSonidoMenu()
 			sonido.stop()
 			game.onTick(600, "INCIO", { juego.empezar()})
 		}
@@ -33,4 +38,22 @@ object presentacion {
 	
 	
 }
+
+
+object pressStart{
+	var property image = "pressStart.png"
+	
+}
+
+
+object sonidoFondo{
+	const property sonidoFondo = soundProducer.sound("sonido_fondo.mp3")
+	
+	
+	method reproducirSonidoMenu(){
+		sonidoFondo.volume(0.2)
+		sonidoFondo.play()
+	}
+}
+
 

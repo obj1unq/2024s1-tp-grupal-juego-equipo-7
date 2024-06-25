@@ -2,16 +2,23 @@ import nave.*
 import balas.*
 import barrera.*
 import aliens.*
+import wollok.game.*
+import mock.*
 
  describe "juego"{
  	const balaAlien = new BalaAlien()
  	const balaNave = new BalaNave()
  	const barreraGris = new BarreraGris()
  	const barreraMarron = new BarreraMarron()
- 	const alienVerde = new AlienVerde()
- 	const alienRojo = new AlienRojo()
- 	const alienAmarillo = new AlienAmarillo()
+ 	const alienVerde = new AlienVerde(position = game.at(8,8)) 
+ 	const alienRojo = new AlienRojo(position = game.at(8,9))
+ 	const alienAmarillo = new AlienAmarillo(position = game.at(8,7))
  	const corazon = new Corazon()
+ 	
+ 	method initialize() {
+ 		soundProducer.provider(soundProviderMock)
+ 		game.clear()
+ 	}
 
 	test "bala de alien colisiona contra la nave y saca salud " {
 		nave.addCorazon(corazon)
