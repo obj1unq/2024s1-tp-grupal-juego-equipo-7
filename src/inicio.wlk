@@ -17,14 +17,15 @@ object pantallaInicio {
 		game.addVisual(self)
 		sonido.shouldLoop(true)
 		game.schedule(500, { sonido.play()})
-		game.addVisualIn(pressStart, game.at(6,1))
+		game.onTick(800, "start", {pressStart.titilar()})
+		
 		
 		keyboard.enter().onPressDo {
 			game.clear()
 			game.addVisual(presentacion)
 			sonido.stop()
 			sonidoFondo.reproducirSonidoMenu()
-			game.onTick(600, "INCIO", { juego.empezar()})
+			game.schedule(1000, { juego.empezar()})
 		}
 	}
 
@@ -42,6 +43,10 @@ object presentacion {
 object pressStart{
 	var property image = "pressStart.png"
 	
+	method titilar(){
+		game.addVisualIn(self, game.at(6,1))
+		game.schedule(300, {game.removeVisual(self)})	
+	}
 }
 
 
