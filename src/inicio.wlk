@@ -18,11 +18,19 @@ object pantallaInicio {
 		
 		keyboard.enter().onPressDo {
 			game.clear()
-			game.addVisual(new Nivel(image = "level1.png"))
+			game.addVisual(presentacion)
 			sonido.stop()
 			game.onTick(600, "INCIO", { juego.empezar()})
 		}
 	}
 
+}
+
+object presentacion {
+	
+	const property position = game.at(0,0)
+	const property image = "presentacion.png"
+	
+	
 }
 

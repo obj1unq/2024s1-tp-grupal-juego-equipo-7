@@ -3,11 +3,12 @@ import nivel.*
 import juego.*
 import nave.*
 import aliens.*
+import inicio.*
 
 
 object gameOver{
 	
-	var property position = game.at(3, 3)
+	var property position = game.at(0,0)
 	var property image = "game_Over.png"
 	const property sonidoMenu = "menu.mp3"
 	const property sonidoMuerte = "gameOver.mp3"
@@ -31,7 +32,8 @@ object gameOver{
 		keyboard.r().onPressDo {
 			game.clear()
 			sonido.stop()
-			game.addVisual(new Nivel(image = "level1.png"))
+			game.addVisual(presentacion)
+			juego.dificultad(1000)
 			game.schedule(600, {juego.empezar()})
 		}
 		

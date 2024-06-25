@@ -18,7 +18,5 @@ program game {
 	game.height(16)
 	pantallaInicio.cargar()
 //	mapa.generar()
-	game.start()
-    
-}
- 
+	game.start()   
+} 

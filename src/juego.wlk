@@ -9,6 +9,9 @@ import mapa.*
 import barrera.*
 
 object juego {
+	
+	var property dificultad = 1000	
+	
 	method empezar() {
 		game.clear()
 		self.restart()
@@ -27,5 +30,20 @@ object juego {
 		balasManagerNave.recargar()
 		flota.vaciarFlota()
 	}
+	
+	method aumentarDificultad(){
+		dificultad -= 50
+		
+	}
+	
+	method ganarSiPuedo(){
+		if(flota.aliens().isEmpty()){
+			self.empezar()
+			self.aumentarDificultad() 
+		}
+	}
+	
+	
+	
 	
 }
