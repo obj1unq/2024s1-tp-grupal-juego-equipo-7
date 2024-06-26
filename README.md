@@ -15,16 +15,16 @@
 
 ## Reglas de Juego / Instrucciones
 
-Hacer la mayor cantidad de puntos posibles matando aliens dispersos en el espacio, estos tambien podran dispararte.                                     
+Hacer la mayor cantidad de puntos posibles matando aliens dispersos en el espacio, estos también pueden disparar al jugador.                                     
 Cada alien cuenta con diferente puntaje:
 
 - Alien rojo, **40 Puntos**
 - Alien verde, **20 Puntos**
 - Alien amarillo, **10 Puntos**
 
-A lo largo del mapa se encuentran diferentes piedras que se pueden romper que te serviran como escudo.                                             
-Cuando se logre matar todos los aliens, apareceran mas y seran mas dificiles de acabar con ellos.                                        
-El jugador cuenta con 3 vidas, si una bala enemiga impacta se resta una de estas, si logran impactarle 3 *GAME OVER*.
+A lo largo del mapa se encuentran diferentes piedras que se pueden romper y que te servirán como escudo.                                             
+Cuando se logre matar todos los aliens, aparecerán más y serán más difíciles de acabar con ellos.                                        
+El jugador cuenta con 3 vidas, si un disparo enemigo impacta se resta una, si logran impactarle 3 *GAME OVER*.
                                                                                    
 - **INSTRUCCIONES**
 
