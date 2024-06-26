@@ -168,6 +168,10 @@ class Explosion {
 		game.schedule(100, { game.removeVisual(self)})
 	}
 
+	method puedoMatarlo(algo) {
+		return false
+	}
+
 }
 
 object muerte {
@@ -181,7 +185,4 @@ object muerte {
 	}
 
 }
-
-
-
 
