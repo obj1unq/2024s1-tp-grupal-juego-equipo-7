@@ -5,6 +5,7 @@ import barrera.*
 import aliens.*
 import mapa.*
 import juego.*
+import mock.*
 
 class Bala {
 
@@ -106,11 +107,15 @@ class BalasManager {
 
 	const property generadas = []
 	const property noGeneradas = []
+	const property sonidoDisparo = "disparo_nave.mp3"
+	const property volumenDisparo
 
 	method generar() {
+		const sonido = soundProducer.sound(sonidoDisparo)
+		sonido.volume(volumenDisparo)
 		if (self.noNuedoGenerar()) {
-		
 		} else {
+			sonido.play()
 			game.addVisual(noGeneradas.first())
 			generadas.add(noGeneradas.first())
 			noGeneradas.first().position(self.carry().position())
@@ -141,7 +146,7 @@ class BalasManager {
 
 }
 
-object balasManagerNave inherits BalasManager {
+object balasManagerNave inherits BalasManager (volumenDisparo = 0.2) {
 
 	const bala1 = new BalaNave()
 	const bala2 = new BalaNave()
@@ -159,7 +164,7 @@ object balasManagerNave inherits BalasManager {
 
 }
 
-object balasManagerAlien inherits BalasManager {
+object balasManagerAlien inherits BalasManager (volumenDisparo = 0) {
 
 	const bala1 = new BalaAlien()
 	const bala2 = new BalaAlien()
@@ -177,5 +182,4 @@ object balasManagerAlien inherits BalasManager {
 	}
 
 }
-
 

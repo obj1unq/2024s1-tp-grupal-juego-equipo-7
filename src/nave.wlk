@@ -11,16 +11,12 @@ object nave {
 	const property arma = balasManagerNave
 	var property salud
 	const vida = []
-	const property sonidoDisparo = "disparo_nave.mp3"
 	var property image = "nave.png"
 	const property impacto = "golpeNave.mp3"
 
 	method disparar() {
-		const sonido = soundProducer.sound(sonidoDisparo)
 		if (game.hasVisual(self)) {
-			sonido.volume(0.2)
 			arma.generar()
-			sonido.play()
 		}
 	}
 
