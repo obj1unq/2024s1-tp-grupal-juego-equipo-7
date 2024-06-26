@@ -109,12 +109,28 @@ class Alien {
 
 class AlienRojo inherits Alien {
 
+	var vidas = 1
+
 	override method image() {
 		return "alien_rojo_" + estadoMovimiento + ".png"
 	}
 
 	override method puntos() {
 		return 40
+	}
+
+	override method reaccionColision(algo) {
+		const sonido = soundProducer.sound(sonidoMuerteAlien)
+		sonido.volume(0.2)
+		if (not algo.puedoMatarlo(self)) {
+		} else if (vidas > 0) {
+			sonido.play()
+			algo.collide(self)
+			vidas -= 1
+		} else {
+			muerte.generarExplosion(position)
+			self.morirPor(algo)
+		}
 	}
 
 }
