@@ -45,69 +45,64 @@ object flota {
 		return self.xs().min()
 	}
 
-	method vaciarFlota(){
+	method vaciarFlota() {
 		aliens.clear()
 	}
-	
-	method congelarFlota(){
+
+	method congelarFlota() {
 		game.removeTickEvent("moverAlien")
 	}
 
 }
 
 class Alien {
-	
+
 	var property position
 	const equipo = flota
 	const arma = balasManagerAlien
-	const property sonidoMuerteAlien = "muerte_alien.mp3"	
+	const property sonidoMuerteAlien = "muerte_alien.mp3"
 	var property estadoMovimiento = s
-	
+
 	method image()
 
 	method puntos()
 
 	method nacer() {
 		game.addVisual(self)
-		game.onTick(juego.dificultad(), "AlienDisparo", {arma.generar()})
-		game.onCollideDo(self, {algo => self.reaccionColision(algo)})
+		game.onTick(juego.dificultad(), "AlienDisparo", { arma.generar()})
+		game.onCollideDo(self, { algo => self.reaccionColision(algo)})
 		equipo.agregarAlien(self)
 	}
-	
-	method reaccionColision(algo) {
-		const sonido = soundProducer.sound(sonidoMuerteAlien)
-		sonido.volume(0.2)
-	    if (not algo.puedoMatarlo(self)){
-			
-		}
-		else{
-		algo.collide(self)
-		game.removeVisual(self)
-		
-		equipo.eliminarAlien(self)
-		
-		//ARREGLAR
-		muerte.agregarVisual(position)
-		sonido.play()
-		juego.ganarSiPuedo()
-		}
-}
 
+	method reaccionColision(algo) {
+		if (not algo.puedoMatarlo(self)) {
+		} else {
+			muerte.generarExplosion(position)
+			self.morirPor(algo)
+		}
+	}
 
 	method mover(direccion) {
 		const proxima = direccion.siguiente(self.position())
 		self.position(proxima)
-		
 		estadoMovimiento = estadoMovimiento.siguiente()
-		
 	}
-	
-	method puedoMatarlo(algo){
+
+	method puedoMatarlo(algo) {
 		return true
 	}
-	
-	method collide(algo){
-		
+
+	method morirPor(algo) {
+		const sonido = soundProducer.sound(sonidoMuerteAlien)
+		sonido.volume(0.2)
+		algo.collide(self)
+		game.removeVisual(self)
+		equipo.eliminarAlien(self)
+		sonido.play()
+		juego.ganarSiPuedo()
+	}
+
+	method collide(algo) {
 	}
 
 }
@@ -146,25 +141,47 @@ class AlienAmarillo inherits Alien {
 		return 10
 	}
 
-} 
+}
 
 object p {
+
 	method siguiente() {
 		return s
-	}	
+	}
+
 }
 
 object s {
+
 	method siguiente() {
 		return p
 	}
+
 }
-object muerte{
+
+class Explosion {
+
 	var property image = "explosion.png"
-	
-	  method agregarVisual(position) {
-   		game.addVisualIn(self,position)
-       	game.schedule(100, {game.removeVisual(self)})	
-      
-    }
+
+	method explotar(position) {
+		game.addVisualIn(self, position)
+		game.schedule(100, { game.removeVisual(self)})
+	}
+
 }
+
+object muerte {
+
+	method puedoMatarlo(algo) {
+	}
+
+	method generarExplosion(position) {
+		const muerte = new Explosion()
+		muerte.explotar(position)
+	}
+
+}
+
+
+
+

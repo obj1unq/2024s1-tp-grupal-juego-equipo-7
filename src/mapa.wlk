@@ -4,6 +4,7 @@ import wollok.game.*
 import barrera.*
 import balas.*
 
+
 object _ {
 
 	method generar(posicion) {
@@ -17,28 +18,30 @@ class GeneradorAlien {
 		const alien = self.alienNuevo(posicion)
 		alien.nacer()
 	}
-	
+
 	method alienNuevo(posicion)
 
 }
 
 object r inherits GeneradorAlien {
 
-	override method alienNuevo(posicion){
+	override method alienNuevo(posicion) {
 		return new AlienRojo(position = posicion)
 	}
+
 }
 
 object a inherits GeneradorAlien {
 
-	override method alienNuevo(posicion){
+	override method alienNuevo(posicion) {
 		return new AlienAmarillo(position = posicion)
 	}
+
 }
 
 object v inherits GeneradorAlien {
 
-	override method alienNuevo(posicion){
+	override method alienNuevo(posicion) {
 		return new AlienVerde(position = posicion)
 	}
 
@@ -49,22 +52,23 @@ object n {
 	method generar(posicion) {
 		nave.position(posicion)
 		game.addVisualCharacter(nave)
-	}  
+	}
 
 }
 
 object c {
-	
+
 	method generar(posicion) {
 		const corazon = self.corazonNuevo(posicion)
 		corazon.nacer()
-		
 	}
-	
-	method corazonNuevo(posicion){
+
+	method corazonNuevo(posicion) {
 		return new Corazon(position = posicion)
 	}
+
 }
+
 //////////////////////////////////////////////////////////////////////////////////////
 class GeneradorBarrera {
 
@@ -72,24 +76,29 @@ class GeneradorBarrera {
 		const barrera = self.barreraNueva(posicion)
 		barrera.nacer()
 	}
-	
+
 	method barreraNueva(posicion)
 
 }
+
 object g inherits GeneradorBarrera {
 
-	override method barreraNueva(posicion){
+	override method barreraNueva(posicion) {
 		return new BarreraGris(position = posicion)
 	}
+
 }
+
 object m inherits GeneradorBarrera {
 
-	override method barreraNueva(posicion){
+	override method barreraNueva(posicion) {
 		return new BarreraMarron(position = posicion)
 	}
+
 }
+
 object mapa {
- 
+
 	const celdas = [
 		[c,c,c,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 15
 		[_,_,_,_,_,_,_,_,r,r,r,r,r,r,r,r,_,_,_,_,_,_,_,_], // 14
@@ -108,11 +117,11 @@ object mapa {
 		[_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 1
 		[_,_,_,_,_,_,_,_,_,_,_,n,_,_,_,_,_,_,_,_,_,_,_,_] // 0
 	].reverse()
-
+	
 
 	method generar() {
 		(0 .. game.width() - 1).forEach({ x => (0 .. game.height() - 1).forEach({ y => self.generarCelda(x, y)})})
-	flota.spawn()
+		flota.spawn()
 	}
 
 	method generarCelda(x, y) {

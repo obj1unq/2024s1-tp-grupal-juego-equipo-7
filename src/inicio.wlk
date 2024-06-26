@@ -4,7 +4,6 @@ import aliens.*
 import juego.*
 import mock.*
 
-
 object pantallaInicio {
 
 	var property position = game.at(3, 5)
@@ -17,11 +16,8 @@ object pantallaInicio {
 		game.addVisual(self)
 		sonido.shouldLoop(true)
 		game.schedule(500, { sonido.play()})
-		game.onTick(800, "start", {pressStart.titilar()})
-		
-		
-		keyboard.enter().onPressDo {
-			game.clear()
+		game.onTick(800, "start", { pressStart.titilar()})
+		keyboard.enter().onPressDo{ game.clear()
 			game.addVisual(presentacion)
 			sonido.stop()
 			sonidoFondo.reproducirSonidoMenu()
@@ -32,37 +28,37 @@ object pantallaInicio {
 }
 
 object presentacion {
-	
-	const property position = game.at(0,0)
+
+	const property position = game.at(0, 0)
 	const property image = "presentacion.png"
-	
-	
+
 }
 
+object pressStart {
 
-object pressStart{
 	var property image = "pressStart.png"
-	
-	method titilar(){
-		game.addVisualIn(self, game.at(6,1))
-		game.schedule(300, {game.removeVisual(self)})	
+
+	method titilar() {
+		game.addVisualIn(self, game.at(6, 1))
+		game.schedule(300, { game.removeVisual(self)})
 	}
+
 }
 
+object sonidoFondo {
 
-object sonidoFondo{
 	const property sonidoFondo = soundProducer.sound("sonido_fondo.mp3")
-	
-	
-	method reproducirSonidoMenu(){
+
+	method reproducirSonidoMenu() {
 		sonidoFondo.shouldLoop(true)
 		sonidoFondo.volume(0.2)
 		sonidoFondo.play()
 	}
-	
-	method pausar(){
+
+	method pausar() {
 		sonidoFondo.pause()
 	}
+
 }
 
 

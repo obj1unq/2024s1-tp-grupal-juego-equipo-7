@@ -8,7 +8,6 @@ import juego.*
 import mapa.*
 import barrera.*
 
-
 program game {
 	// CONFIG
 	game.title("Space Invaders")
@@ -16,5 +15,6 @@ program game {
 	game.width(24)
 	game.height(16)
 	pantallaInicio.cargar()
-	game.start()   
-} 
+	game.start()
+}
+
