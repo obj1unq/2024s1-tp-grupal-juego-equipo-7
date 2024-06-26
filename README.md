@@ -34,6 +34,6 @@ FLECHAS **IZQUIERDA, DERECHA** - MOVERSE
 
 ## Otros
 
-- Universidad Nacion Quilmes (UNQ)
+- Universidad Nacional Quilmes (UNQ)
 - Versión de wollok
 - Una vez terminado, no tenemos problemas en que el repositorio sea público 
