@@ -3,7 +3,9 @@ import balas.*
 import barrera.*
 import aliens.*
 import wollok.game.*
+import juego.*
 import mock.*
+
 
  describe "juego"{
  	const balaAlien = new BalaAlien()
@@ -21,6 +23,9 @@ import mock.*
  	}
 
 	test "bala de alien colisiona contra la nave y saca salud " {
+		flota.agregarAlien(alienVerde)
+		flota.agregarAlien(alienRojo)
+		flota.agregarAlien(alienAmarillo)
 		nave.addCorazon(corazon)
 		nave.addCorazon(corazon)
 		nave.addCorazon(corazon)
@@ -32,6 +37,7 @@ import mock.*
 		assert.equals(1,nave.salud())
 			
 	}
+		
 	test "bala de alien puede matar a nave "{
 		assert.that(balaAlien.puedoMatarlo(nave))
 	}
