@@ -6,6 +6,7 @@ import aliens.*
 import mapa.*
 import juego.*
 import mock.*
+import score.*
 
 class Bala {
 
@@ -79,7 +80,7 @@ class BalaAlien inherits Bala {
 }
 
 class BalaNave inherits Bala {
-
+	var puntos = 0
 	override method image() {
 		return "bala.png"
 	}
@@ -99,6 +100,13 @@ class BalaNave inherits Bala {
 	override method mover() {
 		position = position.up(1)
 		self.quitarSiDebo()
+	} 
+	override method collide(algo) {
+		super(algo)
+		puntos += algo.puntos()
+		if(algo.puntos() > 0) {
+			score.scorear(puntos)
+		}
 	}
 
 }

@@ -116,7 +116,11 @@ class AlienRojo inherits Alien {
 	}
 
 	override method puntos() {
-		return 40
+		if (vidas > 0) {
+			return 0
+		} else {
+			return 40
+		}
 	}
 
 	override method reaccionColision(algo) {
@@ -143,6 +147,11 @@ class AlienVerde inherits Alien {
 
 	override method puntos() {
 		return 20
+	}
+
+	override method reaccionColision(algo) {
+		super(algo)
+		arma.generar()
 	}
 
 }
