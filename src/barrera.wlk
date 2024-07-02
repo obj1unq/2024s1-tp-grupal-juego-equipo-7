@@ -50,6 +50,9 @@ class Barrera {
 
 	method collide(algo) {
 	}
+	method puntos() {
+		return 0
+	}
 
 }
 

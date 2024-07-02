@@ -8,6 +8,7 @@ import juego.*
 import mapa.*
 import barrera.*
 
+
 program game {
 	// CONFIG
 	game.title("Space Invaders")

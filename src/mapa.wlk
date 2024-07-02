@@ -3,7 +3,7 @@ import nave.*
 import wollok.game.*
 import barrera.*
 import balas.*
-
+import score.*
 
 object _ {
 
@@ -97,10 +97,80 @@ object m inherits GeneradorBarrera {
 
 }
 
+
+
+
+object e {
+	var property position 
+	method generar(posicion) {
+		const escore = self.nuevoScore(posicion)
+		escore.nacer()
+	}
+	method nuevoScore(posicion) {
+		return new Score(position = posicion)
+	}
+	
+	
+	
+}
+
+
+object q {
+	method generar(posicion) {
+		const digQ = self.nuevoDigito(posicion)
+		digQ.nacer()
+		
+	}
+	method nuevoDigito(posicion) {
+		return new CuartoD(position = posicion)
+	}
+	
+}
+
+object o {
+	method generar(posicion) {
+		const digO = self.nuevoDigito(posicion)
+		digO.nacer()
+	}
+	method nuevoDigito(posicion) {
+		return new PrimerD(position = posicion)
+	}
+}
+
+object w {
+	method generar(posicion) {
+		const digW = self.nuevoDigito(posicion)
+		digW.nacer()
+		
+	}
+	method nuevoDigito(posicion) {
+		return new SegundoD(position = posicion)
+	}
+
+}
+
+
+object t {
+	method generar(posicion) {
+		const digT = self.nuevoDigito(posicion)
+		digT.nacer()
+	}
+	method nuevoDigito(posicion) {
+		return new TercerD(position = posicion)
+	}
+}
+
+
+
+
+
+
+
+
 object mapa {
 
 	const celdas = [
-		[c,c,c,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_], // 15
+		[c,c,c,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,e,_,q,t,w,o], // 15
 		[_,_,_,_,_,_,_,_,r,r,r,r,r,r,r,r,_,_,_,_,_,_,_,_], // 14
 		[_,_,_,_,_,_,_,_,v,v,v,v,v,v,v,v,_,_,_,_,_,_,_,_], // 13
 		[_,_,_,_,_,_,_,_,v,v,v,v,v,v,v,v,_,_,_,_,_,_,_,_], // 12
