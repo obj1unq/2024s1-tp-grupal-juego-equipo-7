@@ -102,11 +102,12 @@ class BalaNave inherits Bala {
 		self.quitarSiDebo()
 	} 
 	override method collide(algo) {
-		super(algo)
-		puntos += algo.puntos()
+		
 		if(algo.puntos() > 0) {
+			puntos += algo.puntos()
 			score.scorear(puntos)
 		}
+		super(algo)
 	}
 
 }
