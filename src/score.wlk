@@ -24,6 +24,11 @@ object score {
 		
 		
 	}
+	method image() {
+		return "scoreFinal.png"
+	}
+	
+	
 	
 	
 	
