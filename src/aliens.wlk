@@ -6,6 +6,7 @@ import juego.*
 import barrera.*
 import ComportamientoMovimientos.*
 import mock.*
+import score.*
 
 object flota {
 
